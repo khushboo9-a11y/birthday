@@ -1,44 +1,75 @@
-let scene, camera, renderer, cube;
+let currentPage = 0;
+const pages = document.querySelectorAll(".page");
+const book = document.getElementById("book");
+
+/* STACK ORDER */
+pages.forEach((page, i) => {
+  page.style.zIndex = pages.length - i;
+});
 
 function startExperience() {
   document.getElementById("overlay").style.display = "none";
-  document.getElementById("bgMusic").play();
-  document.getElementById("note").style.display = "block";
-  init();
-  animate();
+
+  const music = document.getElementById("bgMusic");
+  music.volume = 0.6;
+  music.play().catch(() => {});
+
+  book.style.transition = "transform 2s ease";
+  book.style.transform = "translate(-50%, -50%) scale(1.05)";
 }
 
-function init() {
-  scene = new THREE.Scene();
+/* NEXT */
+document.getElementById("nextBtn").addEventListener("click", () => {
+  if (currentPage < pages.length) {
+    pages[currentPage].classList.add("flipped");
+    pages[currentPage].style.zIndex = 0;
+    currentPage++;
+  }
+});
 
-  camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000
-  );
+/* PREV */
+document.getElementById("prevBtn").addEventListener("click", () => {
+  if (currentPage > 0) {
+    currentPage--;
+    pages[currentPage].classList.remove("flipped");
+    pages[currentPage].style.zIndex = pages.length - currentPage;
+  }
+});
 
-  renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
+/* PARTICLES */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-  const geometry = new THREE.BoxGeometry(2, 0.2, 3);
-  const material = new THREE.MeshStandardMaterial({ color: 0xffe4c4 });
-  cube = new THREE.Mesh(geometry, material);
-  scene.add(cube);
-
-  const light = new THREE.PointLight(0xffffff, 1);
-  light.position.set(5, 5, 5);
-  scene.add(light);
-
-  camera.position.z = 5;
+let particles = [];
+for (let i = 0; i < 60; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 3 + 1,
+    d: Math.random() * 1
+  });
 }
 
-function animate() {
-  requestAnimationFrame(animate);
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "rgba(255,200,200,0.7)";
+  ctx.beginPath();
 
-  cube.rotation.y += 0.01;
-  cube.rotation.x += 0.005;
+  particles.forEach(p => {
+    ctx.moveTo(p.x, p.y);
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+  });
 
-  renderer.render(scene, camera);
+  ctx.fill();
+  particles.forEach(p => {
+    p.y += p.d;
+    if (p.y > canvas.height) {
+      p.y = 0;
+      p.x = Math.random() * canvas.width;
+    }
+  });
 }
+
+setInterval(drawParticles, 33);

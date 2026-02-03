@@ -2,24 +2,86 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Happy Birthday Scrapbook 💛</title>
+  <title>Birthday Scrapbook</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <div id="overlay">
-    <h1>Happy Birthday ❤️</h1>
-    <button onclick="startExperience()">Open Scrapbook</button>
+<div id="overlay">
+  <h1>Happy Birthday 💖</h1>
+  <button onclick="startExperience()">Open Scrapbook</button>
+</div>
+
+<audio id="bgMusic" src="music.mp3" loop></audio>
+
+<div id="book">
+
+  <div class="page" id="page1">
+    <img src="photos/pic1.jpg" class="photo photoSmall">
+    <p class="note">You are my favorite memory 📸</p>
   </div>
 
-  <audio id="bgMusic" src="music.mp3" loop></audio>
-
-  <div id="note">
-    <img src="photos/pic1.jpg" class="photo">
-    <p>Some people are memories. You are a whole movie 🎞️</p>
+  <div class="page" id="page2">
+    <img src="photos/pic2.jpg" class="photo photolarge">
+    <p class="note">Every picture = one chapter of us 💛</p>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="script.js"></script>
+  <div class="page" id="page3">
+    <img src="photos/pic3.jpg" class="photo photoSmall">
+    <p class="note">Still my favorite human ✨</p>
+  </div>
+
+  <div class="page" id="page4">
+    <img src="photos/pic4.jpg" class="photo photoSmall">
+    <p class="note">Tu bestie se zyada hai… thodi mummy, thodi therapist, aur full-time meri safe place. 🤍</p>
+  </div>
+
+  <div class="page" id="page5">
+    <img src="photos/pic5.jpg" class="photo photolarge">
+    <p class="note">Tere saath life loud bhi lagti hai, aur sunset jaisi peaceful bhi. 🌅</p>
+  </div>
+
+  <div class="page" id="page6">
+    <img src="photos/pic6.jpg" class="photo photolarge">
+    <p class="note">Vizag trip 🌊, random games 🎮, go-karting 🏎️… memories nahi, core files hain 💾✨</p>
+  </div>
+
+  <div class="page" id="page7">
+    <img src="photos/pic7.jpg" class="photo photoSmall">
+    <p class="note">Main kabhi kadwa bol du, par tu kabhi door nahi hoti… that’s love in friendship form 🤍✨.</p>
+  </div>
+
+  <div class="page" id="page8">
+    <img src="photos/pic8.jpg" class="photo photolarge">
+    <p class="note">Tu care bhi karti hai aur roast bhi — full combo pack friend. 💀💛</p>
+  </div>
+
+  <div class="page" id="page9">
+    <img src="photos/pic9.jpg" class="photo photoMedium">
+    <p class="note">“दीदी, तोहार सुंदरता पर का बोलि?
+तोहार मैगी जइसन घुँघराले बाल, अउ तोहार हँसी — दिल सीधा खुश हो जाला।
+सच कहतानी, तोहरा में सादगी अउ प्यारी सी चमक दूनो साथे बा।” 😊
+(Meaning: Didi, what can I even say about your beauty? Your Maggie-like curly hair and your smile make the heart instantly happy. Truly, you have both simplicity and a lovely glow together.)</p>
+  </div>
+
+  <div class="page" id="page10">
+    <img src="photos/pic10.jpg" class="photo photoMedium">
+    <p class="note">humare bich kabhi koi nhi aayega, tu mere liye bhttttt jyada important hai 😊</p>
+  </div>
+
+  <div class="page" id="page11">
+    <img src="photos/pic11.jpg" class="photo photoMedium">
+    <p class="note">“दीदी, मोर गलती, मोर मूड अउ मोर बर्ताव ला सह के घलो तें मोर संग खड़ी रहिस — धन्यवाद।
+सच कहूं, मोर जिनगी म तें रहिस एही सबसे बड़ी बात हव।” 💛
+(Meaning: Didi, meri galtiyan, moods aur behavior ke baad bhi tum mere saath khadi rahi — thank you. Sach me, meri life me tumhara rehna sabse badi baat hai.)</p>
+  </div>
+
+</div>
+
+<button id="prevBtn">⬅</button>
+<button id="nextBtn">➜</button>
+<canvas id="particles"></canvas>
+
+<script src="script.js"></script>
 </body>
 </html>
